@@ -12,7 +12,7 @@ import sqlite3
 with sqlite3.connect('scedatabase.db') as db:
     c = db.cursor()
 
-c.execute('CREATE TABLE IF NOT EXISTS user (username TEXT NOT NULL ,password TEX NOT NULL);')
+c.execute('CREATE TABLE IF NOT EXISTS user (username TEXT NOT NULL ,password TEX NOT NULL, privlage TEX NOT NULL);')
 db.commit()
 db.close()
 
@@ -103,6 +103,6 @@ class main:
 
 #create window and application object
 root = Tk()
-#root.title("Lo gin Form")
+#root.title("Login Form")
 main(root)
 root.mainloop()

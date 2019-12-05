@@ -6,3 +6,5 @@ print(page.cropBox.getLowerLeft())
 print(page.cropBox.getUpperLeft())
 print(page.cropBox.getUpperRight())
 print(page.cropBox.getLowerRight())
+
+print("hrllo patrick")

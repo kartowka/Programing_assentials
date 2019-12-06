@@ -1,13 +1,12 @@
 #Rakaz info
-class Coordinator:
+class Coordinator(Lecturer):
     department
-    firstName
-    lastName
 #Lecturer info
-class Lecturer(Lecturer):
-    
+class Lecturer(Student):
+    yearOfExprience
+    subjectOfTeaching
 #course info   
-class Cousre(Lecturer):
+class Cousre():
     courseName
     courseNumber
 #exam date and moed
@@ -15,10 +14,12 @@ class Exam:
     year
     moed
 #question info     
-class Question:
+class Question(Exam):
     NoQuestion
     questionType
     difficultyLevel
 #student info
-class Student(Lecturer):
+class Student():
+    firstName
+    lastName
     year

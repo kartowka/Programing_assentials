@@ -22,6 +22,8 @@ class Student():
 #Lecturer info
 class Lecturer(Student,Course):
     def _init_(yearOfExprience):
+        super()._init_(firstName,lastName,year)
+        super()._init_(courseName,courseNumber)
         self.yearOfExprience=yearOfExprience          
 #Rakaz info
 class Coordinator(Lecturer): 

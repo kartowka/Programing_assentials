@@ -1,31 +1,33 @@
 #course info   
 class Course():
-    def _init_(courseName,courseNumber):
+    def __init__(self,courseName,courseNumber):
         self.courseName=courseName
         self.courseNumber=courseNumber
 #exam date and moed
-class Exam:
-    def _init_(self,year):
+class Exam(): 
+    def __init__(self,year):
         self.year=year
 #question info
 class Question(Exam):
-    def _init_(self,NoQuestion,questionType,difficultyLevel):
+    def __init__(self,NoQuestion,questionType,difficultyLevel):
+        Exam.__init__(Exam,year=None)
         self.NoQuestion=NoQuestion
         self.questionType=questionType
         self.difficultyLevel=difficultyLevel
 #student info
 class Student():
-    def _init_(self,firstName,lastName,year=0):
+    def __init__(self,firstName,lastName,year=0):
         self.firstName=firstName
         self.lastName=lastName
         self.year=year
 #Lecturer info
 class Lecturer(Student,Course):
-    def _init_(yearOfExprience):
-        super()._init_(firstName,lastName,year)
-        super()._init_(courseName,courseNumber)
-        self.yearOfExprience=yearOfExprience          
+    def __init__(yearOfExprience):
+        Student.__init__(Student,firstName=None,lastName=None,year=None)
+        Course.__init__(Course,courseName=None,courseNumber=None)
+        Lecturer.yearOfExprience=yearOfExprience          
 #Rakaz info
 class Coordinator(Lecturer):
-    def _init_(self,department):
-        self.department
+    def __init__(self,department):
+        Lecturer.__init__(self)
+        self.department=department

@@ -11,3 +11,5 @@ def image_input(docName,imgPath,size=2):
     document.save(docName)
     return document
 
+#MUST INPUT DOC NAME WITH ENDING .DOCX
+#IMAGE PATH MUST END WITH .PNG

@@ -1,6 +1,6 @@
-#course info
+#course info   
 class Course():
-    def _init_(self,courseName,courseNumber=0):
+    def _init_(courseName,courseNumber):
         self.courseName=courseName
         self.courseNumber=courseNumber
 #exam date and moed
@@ -20,11 +20,11 @@ class Student():
         self.lastName=lastName
         self.year=year
 #Lecturer info
-class Lecturer(Student):
-    def _init_(self,yearOfExprience,subjectOfTeaching):
-        self.yearOfExprience=yearOfExprience
-        self.subjectOfTeaching=subjectOfTeaching
-        super().__init__(firstName,lastName)
+class Lecturer(Student,Course):
+    def _init_(yearOfExprience):
+        super()._init_(firstName,lastName,year)
+        super()._init_(courseName,courseNumber)
+        self.yearOfExprience=yearOfExprience          
 #Rakaz info
 class Coordinator(Lecturer):
     def _init_(self,department):

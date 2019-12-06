@@ -2,8 +2,7 @@
 class Cousre():
     def _init_(courseName,courseNumber):
         self.courseName=courseName
-        self.courseNumber=courseNumber
- 
+        self.courseNumber=courseNumber 
 #exam date and moed
 class Exam:
     def _init_(year):

@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter.ttk import Combobox
-import dataClasses
+import dataClasses as dC
 
 class MyWindow:
     def __init__(self, win):
@@ -28,8 +28,6 @@ class MyWindow:
     def submit(self):
         print(self.courseName.get())
         print(self.LecturerName.get())
-        for i in len(self.data1):
-            print(self.data[i].get())
 
 
 

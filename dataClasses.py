@@ -1,5 +1,5 @@
 #course info   
-class Cousre():
+class Course():
     def _init_(courseName,courseNumber):
         self.courseName=courseName
         self.courseNumber=courseNumber 
@@ -20,10 +20,9 @@ class Student():
         self.lastName=lastName
         self.year=year
 #Lecturer info
-class Lecturer(Student):
-    def _init_(yearOfExprience,subjectOfTeaching):
-        self.yearOfExprience=yearOfExprience
-        self.subjectOfTeaching=subjectOfTeaching            
+class Lecturer(Student,Course):
+    def _init_(yearOfExprience):
+        self.yearOfExprience=yearOfExprience          
 #Rakaz info
 class Coordinator(Lecturer): 
     def _init_(department):

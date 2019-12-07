@@ -25,6 +25,12 @@ class MyWindow:
         self.cb2=Combobox(win, values=self.data2)
         self.cb2.place(x=1085, y=50)
         self.btn1.place(x=1285,y=50)
+        self.searchResults=Label(win,text="Search Results: ")
+        self.searchResults.place(x=100,y=150)
+        self.listbox=Listbox(win)
+        self.listbox.place(height=200,width=1185,x=100,y=200)
+        
+
     def submit(self):
         print(self.courseName.get())
         print(self.LecturerName.get())

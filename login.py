@@ -43,6 +43,9 @@ class main:
             self.logf.pack_forget()
             self.head['text'] = self.username.get() + '\n Loged In'
             self.head['pady'] = 150
+            root.destroy()
+            import searchEngine
+
         else:
             ms.showerror('Oops!','Username Not Found.')
 
@@ -103,6 +106,6 @@ class main:
 
 #create window and application object
 root = Tk()
-#root.title("Login Form")
+root.title("Login Form")
 main(root)
 root.mainloop()

@@ -105,7 +105,7 @@ class main:
 
 
 #create window and application object
-root = Tk()
-root.title("Login Form")
-main(root)
-root.mainloop()
+loginScreen = Tk()
+loginScreen.title("Login Form")
+main(loginScreen)
+loginScreen.mainloop()

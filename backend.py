@@ -33,7 +33,7 @@ def search(firstname="",lastname="",username=""):
 def delete(id):
     conn=sqlite3.connect('database.db')
     cur = conn.cursor()
-    cur.execute("DELETE FROM users WHERE id=?",(id) )
+    cur.execute("DELETE FROM users WHERE id=?",(id,) )
     conn.commit()
     conn.close()
 

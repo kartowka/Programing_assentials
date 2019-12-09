@@ -23,11 +23,11 @@ class main:
     def submitToText(self):
         #newFile=open("1.txt","w")
         self.newFile.write(((self.questionSubject.get()+self.subQuestionSubject.get())+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get()))
-         
+
 
     #drawing widgets
     def widgets(self):
-        self.head=Label(self.root,text="Parliamentary Question",font=('',35),pady=10)        
+        self.head=Label(self.root,text="Parliamentary Question",font=('',35),pady=10)
         self.head.pack()
         self.entryF=Frame(self.root,padx=10,pady=10)
         Label(self.entryF,text="Question subject",font=("",20),pady=3,padx=3).grid(sticky=W)
@@ -52,8 +52,7 @@ class main:
         self.entryF.pack()
 
 #creating window application
-root=Tk()
-root.title("Parliamentary Question")
-main(root)
-root.mainloop()
-
+#root=Tk()
+#root.title("Parliamentary Question")
+#main(root)
+#root.mainloop()

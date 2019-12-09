@@ -1,11 +1,20 @@
 from tkinter import *
 import backend
+from ParliamentaryQuestion import main
 
-class Admin:
+class Admin():
     def __init__(self,window):
         self.window=window
+        menubar=Menu(window)
+        window.config(menu=menubar)
         self.frame=Frame(self.window,width=800,height=450)
         self.frame.pack()
+        file = Menu(menubar, tearoff = 0)
+        menubar.add_cascade(label ='File', menu = file)
+        file.add_command(label="ParliamentaryQuestion", command= main(window) )
+        #file.add_separator()
+        file.add_command(label ='Exit', command = window.destroy)
+
 
         self.Label=Label(self.frame,text="Admin user",font=('Georgia',30,'bold')).place(x=150,y=20,width=400,height=50)
         self.label_first = Label(self.frame, text='First Name: ',font=('Georgia',14,'bold')).place(x=0,y=100,width=120,height=30)
@@ -26,7 +35,7 @@ class Admin:
         self.entry_username.place(x=470,y=100,width=150,height=30)
 
         self.password_text=StringVar()
-        self.entry_password = Entry(self.frame, fg='gray',textvariable=self.password_text,width=25,font=('Arial',12,'bold'))
+        self.entry_password = Entry(self.frame, fg='gray',textvariable=self.password_text,width=25,font=('Arial',12,'bold'),show='*')
         self.entry_password.place(x=470,y=150,width=150,height=30)
 
         self.var=IntVar()

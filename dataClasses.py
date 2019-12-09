@@ -6,16 +6,17 @@ class Course():
 
 #exam date and moed
 class Exam(): 
-    def __init__(self,year,semester,moed):  #,year=None,semester=None,moed=None
+    def __init__(self,year=None,semester=None,moed=None):  
         self.year=year
         self.semester=semester
         self.moed=moed
 
 #question info
 class Question(Exam):
-    def __init__(self,noQuestion=None,questionSubject=None,subQuestionSubject=None,difLvl=None,terms=None):
+    def __init__(self,noQuestion=None,questionSubject=None,subQuestionSubject=None,numberOfParagraphs=None,difLvl=None,terms=None):
         Exam.__init__(Exam,year=None,semester=None,moed=None)
         self.noQuestion=noQuestion
+        self.numberOfParagraphs
         self.questionSubject=questionSubject
         self.subQuestionSubject=subQuestionSubject
         self.difLvl=difLvl

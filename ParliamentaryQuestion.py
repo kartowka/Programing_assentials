@@ -1,47 +1,59 @@
 from tkinter import *
 from dataClasses import *
 
-root = Tk()
-theLabel=Label(root,text="Parliamentary Question",bg="black",fg="white")
-#theLabel.pack(fill=X)
-Label_1=Label(root,text="question subject")
-Label_2=Label(root,text="sub question subject")
-Label_3=Label(root,text="difficulty level(1-10)")
-Label_4=Label(root,text="mid terms/final term")
-Label_5=Label(root,text="year")
-Label_6=Label(root,text="semester")
-Label_7=Label(root,text="Moed")
-Label_8=Label(root,text="question format")
-entry_1=Entry(root)
-entry_2=Entry(root)
-entry_3=Entry(root)
-entry_4=Entry(root)
-entry_5=Entry(root)
-entry_6=Entry(root)
-entry_7=Entry(root)
-entry_8=Entry(root)
+class main:
+    def __init__(self,root):
+        #window
+        self.root=root
+        #Data of questinary
+        self.questionSubject=StringVar()
+        self.subQuestionSubject=StringVar()
+        self.numberOfParagraphs=StringVar()
+        self.difLvl=StringVar()
+        self.terms=StringVar()
+        self.year=StringVar()
+        self.semester=StringVar()
+        self.moed=StringVar()
+        self.format=StringVar()
+        #A file
+        self.newFile=open("test.txt","w+")
+        #create widgets
+        self.widgets()
+    #saving all questinary into a text to send to database
+    def submitToText(self):
+        #newFile=open("1.txt","w")
+        self.newFile.write(((self.questionSubject.get()+self.subQuestionSubject.get())+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get()))
+         
 
-Label_1.grid(row=0)
-Label_2.grid(row=1)
-Label_3.grid(row=2)
-Label_4.grid(row=3)
-Label_5.grid(row=4)
-Label_6.grid(row=5)
-Label_7.grid(row=6)
-Label_8.grid(row=7)
+    #drawing widgets
+    def widgets(self):
+        self.head=Label(self.root,text="Parliamentary Question",font=('',35),pady=10)        
+        self.head.pack()
+        self.entryF=Frame(self.root,padx=10,pady=10)
+        Label(self.entryF,text="Question subject",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.questionSubject,bd=5,font=('',9)).grid(row=0,column=1)
+        Label(self.entryF,text="Sub question subject",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.subQuestionSubject,bd=5,font=('',9)).grid(row=1,column=1)
+        Label(self.entryF,text="Number of paragraphs",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.numberOfParagraphs,bd=5,font=('',9)).grid(row=2,column=1)
+        Label(self.entryF,text="Difficulty level(1-10)",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.difLvl,bd=5,font=('',9)).grid(row=3,column=1)
+        Label(self.entryF,text="Mid/Final terms",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.terms,bd=5,font=('',9)).grid(row=4,column=1)
+        Label(self.entryF,text="Year",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.year,bd=5,font=('',9)).grid(row=5,column=1)
+        Label(self.entryF,text="Semester",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.semester,bd=5,font=('',9)).grid(row=6,column=1)
+        Label(self.entryF,text="Moed",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.moed,bd=5,font=('',9)).grid(row=7,column=1)
+        Label(self.entryF,text="Question format",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.format,bd=5,font=('',9)).grid(row=8,column=1)
+        Button(self.entryF,text="Submit Form",bd=4,font=("",15),padx=5,pady=5,command=self.submitToText).grid()
+        self.entryF.pack()
 
-entry_1.grid(row=0,column=1)
-entry_2.grid(row=1,column=1)
-entry_3.grid(row=2,column=1)
-entry_4.grid(row=3,column=1)
-entry_5.grid(row=4,column=1)
-entry_6.grid(row=5,column=1)
-entry_7.grid(row=6,column=1)
-entry_8.grid(row=7,column=1)
-
-submitButton=Button(root, text="submit" )
-submitButton.pack()
-
-
+#creating window application
+root=Tk()
+root.title("Parliamentary Question")
+main(root)
 root.mainloop()
 

@@ -34,8 +34,8 @@ class UploadBox:
         return pages
     def close(self):
         return window.destroy()
-window=Tk()
-mywin=UploadBox(window)
-window.title('SCE - pdf2image')
-window.geometry("400x200+10+10")
-window.mainloop()
+# window=Tk()
+# mywin=UploadBox(window)
+# window.title('SCE - pdf2image')
+# window.geometry("400x200+10+10")
+# window.mainloop()

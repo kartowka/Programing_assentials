@@ -26,6 +26,8 @@ class UploadBox:
     def importc(self):
         #OPENING FILE
         ifile  = open(self.fileNameInput.get(), "r")
+        if ifile==None:
+            return
         read = csv.reader(ifile)
         for row in read :
             searchdatabase.insertFromCSV(row)

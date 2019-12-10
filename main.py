@@ -73,6 +73,8 @@ class login:
             elif result[5]==3:
                 self.frame.destroy()
                 obj=Student(window)
+        else:
+            messagebox.showinfo("ERROR","Username or Password incorrect.")
 
 
 # creating the window

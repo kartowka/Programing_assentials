@@ -30,9 +30,9 @@ def view():
 def search(questionSubject='',subQuestionSubject='',difLvl='',terms='',year='',semester='',moed='',format=''):
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()
-    #cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? OR difLvl=? OR terms=? OR year=?,semester=?,moed=?,format=?",(questionSubject,subQuestionSubject,difLvl,terms,year,semester,moed,format))
+    cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? OR difLvl=? OR terms=? OR year=? OR semester=? OR moed=? OR format=?",(questionSubject,subQuestionSubject,difLvl,terms,year,semester,moed,format))
     #test field searh by questionSubject subQuestionSubject
-    cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? ",(questionSubject,subQuestionSubject))
+    #cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? ",(questionSubject,subQuestionSubject))
     rows=cur.fetchall()
     conn.close()
     return rows

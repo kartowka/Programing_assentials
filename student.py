@@ -1,94 +1,96 @@
 from tkinter import *
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 from tkinter.ttk import Combobox
 import backend
 import searchdatabase
+import os.path
 
 class Student:
     def __init__(self,window):
+        #id,questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,year,semester,moed,format
+
         self.window = window
         self.window.geometry('1400x600')
-        self.frame = Frame(self.window, width=700,height=400)
-        self.courseName = StringVar()
-        self.LecturerName = StringVar()
-        self.lbl1=Label(self.window, text='Course Name:')
-        self.lbl2=Label(self.window, text='Lecturer Name:')
-        self.courseName=Entry(self.window,textvariable=self.courseName)
-        self.LecturerName=Entry(self.window,textvariable=self.LecturerName)
-        self.btn1 = Button(self.window, text='Submit',command=self.submit)
-        self.lbl1.place(x=100, y=50)
-        self.courseName.place(x=200, y=50)
-        self.lbl2.place(x=380, y=50)
-        self.LecturerName.place(x=485, y=50)
-        self.data=("", "Exam", "Pre-Exam")
-        self.cb=Combobox(self.window, values=self.data)
-        self.cb.place(x=685, y=50)
-        self.data1=("","1-Easy",'2','3','4','5','6',"7-Very Hard")
-        self.cb2=Combobox(self.window,values=self.data1)
-        self.cb2.place(x=885,y=50)
-        self.data2=("", "Answer", "No-Answer")
-        self.cb2=Combobox(self.window, values=self.data2)
-        self.cb2.place(x=1085, y=50)
-        self.btn1.place(x=1285,y=50)
-        self.searchResults=Label(self.window,text="Search Results: ")
-        self.searchResults.place(x=100,y=150)
-        self.listbox=Listbox(self.window)
-        self.listbox.place(height=200,width=1185,x=100,y=200)
+        self.window.grid_rowconfigure(1, weight=1)
+        self.window.grid_columnconfigure(0, weight=1)
+        self.frame = Frame(self.window,width=1400, height=200, pady=3)
+        self.questionSubject = StringVar()
+        self.subQuestionSubject = StringVar()
+        self.year=StringVar()
+        self.difLvl=("1",'2','3','4','5','6',"7","8","9","10")
+        self.terms=("Pre-Exam","Exam")
+        self.semester=("first","second","third")
+        self.moed=("first","second")
+        self.format=("pdf","word")
 
-        # self.label = Label(self.frame,text='Student User',font=('Georgia',30,'bold'))
-        # self.label.place(x=20,y=20,width=400,height=50)
+        Label(self.frame,text="Question subject: ",font=("",14),pady=3,padx=3).place(x=10,y=50)
+        Entry(self.frame,textvariable=self.questionSubject,font=("",14),width=14).place(x=185,y=50)
 
-        # self.label_title = Label(self.frame, text='TITLE',font=('Georgia',14,'bold'))
-        # self.label_title.place(x=20,y=100,width=100,height=50)
+        Label(self.frame,text="sub question subject: ",font=("",14),pady=3,padx=3).place(x=370,y=50)
+        Entry(self.frame,textvariable=self.subQuestionSubject,font=("",14),width=14).place(x=590,y=50)
 
-        # self.label_year = Label(self.frame, text='YEAR',font=('Georgia',14,'bold'))
-        # self.label_year.place(x=20,y=150,width=100,height=30)
+        Label(self.frame,text="Difficulty: ",font=("",14),pady=3,padx=3).place(x=800,y=50)
+        self.dif_combo=Combobox(self.frame,values=self.difLvl,font=("",14),width=5)
+        self.dif_combo.place(x=900,y=50)
 
-        # self.label_author = Label(self.frame, text='AUTHOR',font=('Georgia',14,'bold'))
-        # self.label_author.place(x=350,y=100,width=100,height=30)
+        Label(self.frame,text="Term: ",font=("",14),pady=3,padx=3).place(x=120,y=100)
+        self.terms_combo=Combobox(self.frame,values=self.terms,font=("",14),width=8)
+        self.terms_combo.place(x=185,y=100)
 
-        # self.label_isbn = Label(self.frame, text='ISBN',font=('Georgia',14,'bold'))
-        # self.label_isbn.place(x=350,y=150,width=100,height=30)
+        Label(self.frame,text="Year: ",font=("",14),pady=3,padx=3).place(x=300,y=100)
+        Entry(self.frame,textvariable=self.year,font=("",14),width=6).place(x=360,y=100)
 
-        # self.title_text=StringVar()
-        # self.entry_title = Entry(self.frame, fg='gray',textvariable=self.title_text,width=25,font=('Arial',12,'bold'))
-        # self.entry_title.place(x=120,y=100,width=150,height=30)
+        Label(self.frame,text="Semester: ",font=("",14),pady=3,padx=3).place(x=430,y=100)
+        self.semester_combo=Combobox(self.frame,values=self.semester,font=("",14),width=8)
+        self.semester_combo.place(x=530,y=100)
 
-        # self.year_text=StringVar()
-        # self.entry_year = Entry(self.frame, fg='gray',textvariable=self.year_text,width=25,font=('Arial',12,'bold'))
-        # self.entry_year.place(x=120,y=150,width=150,height=30)
+        Label(self.frame,text="Moed: ",font=("",14),pady=3,padx=3).place(x=640,y=100)
+        self.moed_combo=Combobox(self.frame,values=self.moed,font=("",14),width=5)
+        self.moed_combo.place(x=700,y=100)
 
-        # self.author_text=StringVar()
-        # self.entry_author = Entry(self.frame, fg='gray',textvariable=self.author_text,width=25,font=('Arial',12,'bold'))
-        # self.entry_author.place(x=470,y=100,width=150,height=30)
+        Label(self.frame,text="Format: ",font=("",14),pady=3,padx=3).place(x=780,y=100)
+        self.format_combo=Combobox(self.frame,values=self.format,font=("",14),width=5)
+        self.format_combo.place(x=860,y=100)
 
-        # self.isbn_text=StringVar()
-        # self.entry_isbn = Entry(self.frame, fg='gray',textvariable=self.isbn_text,width=25,font=('Arial',12,'bold'))
-        # self.entry_isbn.place(x=470,y=150,width=150,height=30)
+        Button(self.frame, text="Submit",bd=4,font=("",14),padx=3,pady=3,command=self.submit).place(x=950,y=100)
+        self.frame.pack(side=TOP)
 
-        # self.listbox = Listbox(self.frame)
-        # self.listbox.place(x=100,y=200,width=500,height=100)
+        self.cnt_frame = Frame(self.window, width=1400, height=400)
+        Label(self.cnt_frame,text="Search Results: ",font=("",14),pady=3,padx=3).place(x=10,y=0)
+        self.search_result=Listbox(self.cnt_frame,font=("",14))
+        self.search_result.place(height=300,width=1050,x=10,y=40)
+        Button(self.cnt_frame, text="Download Selected",bd=4,font=("",14),padx=3,pady=3,command=self.downloadFile).place(x=160,y=0)
+        self.cnt_frame.pack(side=TOP)
 
-        # self.button_view = Button(self.frame,text='View All', command=self.view_command)
-        # self.button_view.place(x=100,y=320,width=100,height=40)
 
-        # self.button_search = Button(self.frame,text='Search ', command=self.search_command)
-        # self.button_search.place(x=200,y=320,width=100,height=40)
 
-        # self.button_issue = Button(self.frame,text='Issue', command=self.issue_command)
-        # self.button_issue.place(x=300,y=320,width=100,height=40)
 
-        # self.button_request = Button(self.frame, text='Request', command = self.request_command)
-        # self.button_request.place(x=400, y=320,width=100,height=40)
+        # self.listbox=Listbox(self.window)
+        # self.listbox.place(height=200,width=1185,x=100,y=200)
 
-        # self.button_issue = Button(self.frame, text='Clear Fields', command=self.clear_command)
-        # self.button_issue.place(x=500, y=320,width=100,height=40)
-
-        self.frame.pack()
     def submit(self):
-        self.listbox.delete(0,END)
-        for row in searchdatabase.search(self.courseName.get(),self.LecturerName.get()):
-            self.listbox.insert(END,row)
+        self.search_result.delete(0,END)
+        for row in searchdatabase.search(self.questionSubject.get(),self.subQuestionSubject.get(),self.dif_combo.get(),self.terms_combo.get(),self.year.get(),self.semester_combo.get(),self.moed_combo.get(),self.format_combo.get()):
+            self.search_result.insert(END,row)
+
+    #returns filename from database .pdf or docx
+    def tup2str(self,tup):
+        str=''.join(tup[1:-1])
+        ends=''.join(tup[-1])
+        if ends=='word':
+            ends='docx'
+        str=str+'.'+ends
+        return str
+
+    def downloadFile(self):
+        selected_tuple=self.search_result.curselection()
+        if selected_tuple==():
+            return
+        value = self.search_result.get(selected_tuple)
+        #print(self.tup2str(value))
+        print(os.path.exists(self.tup2str(value)))
+        #save=filedialog.asksaveasfile(mode='w')
+
         #searchdatabase.search(self.courseName,self.LecturerName)
     # def clear_command(self):
     #     self.entry_title.delete(0,END)

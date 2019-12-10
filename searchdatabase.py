@@ -6,6 +6,12 @@ def connect():
     conn.commit()
     conn.close()
 
+def insertFromCSV(row):
+    conn=sqlite3.connect('searchdatabase.db')
+    cur = conn.cursor()
+    cur.execute('INSERT INTO question VALUES(NULL,?,?,?,?,?,?,?,?,?)',row)
+    conn.commit()
+    conn.close()
 def insert(questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,year,semester,moed,format):
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()
@@ -24,7 +30,9 @@ def view():
 def search(questionSubject='',subQuestionSubject='',difLvl='',terms='',year='',semester='',moed='',format=''):
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()
-    cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? OR difLvl=? OR terms=? OR year=?,semester=?,moed='',format=''",(questionSubject,subQuestionSubject,difLvl,terms,year,semester,moed,format))
+    #cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? OR difLvl=? OR terms=? OR year=?,semester=?,moed=?,format=?",(questionSubject,subQuestionSubject,difLvl,terms,year,semester,moed,format))
+    #test field searh by questionSubject subQuestionSubject
+    cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? ",(questionSubject,subQuestionSubject))
     rows=cur.fetchall()
     conn.close()
     return rows

@@ -1,7 +1,8 @@
 from tkinter import *
 import csv
-import importCsv_backend
+import searchdatabase
 from tkinter import filedialog
+from tkinter import messagebox
 
 
 class UploadBox:
@@ -23,33 +24,17 @@ class UploadBox:
         self.fileNameInput.insert(0,self.fileName)
         return self.fileName
     def importc(self):
-        #self.filename = filedialog.askopenfilename()
         #OPENING FILE
-        self.inputCSV=PdfFileReader(self.fileNameInput.get(),'rb')
-        dr = csv.DictReader(self.inputCSV)
-        to_db= [(i['questionSubject'], i['subQuestionSubject'],i['numberOfParagraphs'],i['difLvl'],i['terms'],i['year'],i['semester'],i['moed'],i['format']) for i in dr]
-        #GETTING NUMBER OF PAGES
-        importCsv_backend.insert(to_db)
+        ifile  = open(self.fileNameInput.get(), "r")
+        read = csv.reader(ifile)
+        for row in read :
+            searchdatabase.insertFromCSV(row)
+        #importCsv_backend.insert(to_db)
         messagebox.showinfo("Messege","file upload complete!")
     def close(self):
         return window.destroy()
 window=Tk()
 mywin=UploadBox(window)
-window.title('SCE - PDF FILE2PAGE')
+window.title('SCE - import CSV file')
 window.geometry("1000x200+10+10")
 window.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

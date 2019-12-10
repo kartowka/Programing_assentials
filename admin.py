@@ -11,7 +11,7 @@ class Admin():
         self.frame.pack()
         file = Menu(menubar, tearoff = 0)
         menubar.add_cascade(label ='File', menu = file)
-        file.add_command(label="ParliamentaryQuestion", command= lambda:main(window) )
+        file.add_command(label="ParliamentaryQuestion", command= self.parliamentary_question)
         #file.add_separator()
         file.add_command(label ='Exit', command = window.destroy)
 
@@ -63,6 +63,12 @@ class Admin():
 
         self.button_issue = Button(self.frame, text='Clear Fields', command=self.clear_command)
         self.button_issue.place(x=100, y=360,width=100,height=40)
+    def parliamentary_question(self):
+        window=Tk()
+        window.title('question')
+        window.geometry('1400x600')
+        obj = main(window)
+        window.mainloop()
 
     def clear_command(self):
         self.entry_first.delete(0,END)

@@ -86,7 +86,10 @@ class Student:
 
         self.frame.pack()
     def submit(self):
-        pass
+        self.listbox.delete(0,END)
+        for row in searchdatabase.search(self.courseName.get(),self.LecturerName.get()):
+            self.listbox.insert(END,row)
+        #searchdatabase.search(self.courseName,self.LecturerName)
     # def clear_command(self):
     #     self.entry_title.delete(0,END)
     #     self.entry_year.delete(0,END)
@@ -108,9 +111,8 @@ class Student:
     #     self.listbox.delete(0,END)
     #     self.listbox.insert(END,(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get()))
 
-    '''
-window = Tk()
-window.title('Student_User')
-window.geometry('700x400')
-obj = student(window)
-window.mainloop()'''
+# window = Tk()
+# window.title('Student_User')
+# window.geometry('700x400')
+# obj = Student(window)
+# window.mainloop()

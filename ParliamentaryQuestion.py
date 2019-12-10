@@ -1,5 +1,6 @@
 from tkinter import *
 from dataClasses import *
+import searchdatabase
 
 class main:
     def __init__(self,root):
@@ -16,14 +17,14 @@ class main:
         self.moed=StringVar()
         self.format=StringVar()
         #A file
-        self.newFile=open("test.txt","w+")
+        #self.newFile=open("test.txt","w+")
         #create widgets
         self.widgets()
     #saving all questinary into a text to send to database
     def submitToText(self):
         #newFile=open("1.txt","w")
-        self.newFile.write(((self.questionSubject.get()+self.subQuestionSubject.get())+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get()))
-
+        #self.newFile.write(((self.questionSubject.get()+self.subQuestionSubject.get())+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get()))
+        searchdatabase.insert(self.questionSubject.get(),self.subQuestionSubject.get(),self.numberOfParagraphs.get(),self.difLvl.get(),self.terms.get(),self.year.get(),self.semester.get(),self.moed.get(),self.format.get())
 
     #drawing widgets
     def widgets(self):
@@ -52,7 +53,7 @@ class main:
         self.entryF.pack()
 
 #creating window application
-#root=Tk()
-#root.title("Parliamentary Question")
-#main(root)
-#root.mainloop()
+# root=Tk()
+# root.title("Parliamentary Question")
+# main(root)
+# root.mainloop()

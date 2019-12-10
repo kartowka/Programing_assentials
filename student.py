@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk, messagebox
 from tkinter.ttk import Combobox
 import backend
+import searchdatabase
 
 class Student:
     def __init__(self,window):

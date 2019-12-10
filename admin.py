@@ -11,7 +11,7 @@ class Admin():
         self.frame.pack()
         file = Menu(menubar, tearoff = 0)
         menubar.add_cascade(label ='File', menu = file)
-        file.add_command(label="ParliamentaryQuestion", command= main(window) )
+        file.add_command(label="ParliamentaryQuestion", command= lambda:main(window) )
         #file.add_separator()
         file.add_command(label ='Exit', command = window.destroy)
 

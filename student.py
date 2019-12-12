@@ -11,6 +11,7 @@ class Student:
         #id,questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,year,semester,moed,format
 
         self.window = window
+        #self.window = Toplevel()
         self.window.geometry('1400x600')
         self.window.grid_rowconfigure(1, weight=1)
         self.window.grid_columnconfigure(0, weight=1)
@@ -89,7 +90,8 @@ class Student:
         if selected_tuple==():
             return
         value = self.search_result.get(selected_tuple)
-        obj=Rating(self.window,value[3])
+        #self.window.destroy()
+        obj=Rating(self.window,value)
 
 
     def downloadFile(self):
@@ -122,9 +124,3 @@ class Student:
     #     backend.insert(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get())
     #     self.listbox.delete(0,END)
     #     self.listbox.insert(END,(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get()))
-
-window = Tk()
-window.title('Student_User')
-window.geometry('700x400')
-obj = Student(window)
-window.mainloop()

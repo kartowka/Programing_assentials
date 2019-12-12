@@ -1,19 +1,19 @@
 from tkinter import *
-from tkinter import Radiobutton
+from tkinter import Radiobutton,IntVar
 import searchdatabase
 
-class Rating:
+class Rating():
     def __init__(self, root,val):
         self.root = root
-        self.root=Tk()
+        self.root=Toplevel()
         self.root.title("Question Rating")
         self.root.geometry('700x500')
-        self.number = int(val)
+        self.var=val
+        self.number = int(val[3])
         self.radiobuttons = [[0 for x in range(5)] for y in range(self.number)]
         self.buttons = []
         self.radiobutton=[]
-        global a=IntVar()
-        self.v=[a for x in range(self.number)]
+        self.v=[IntVar() for x in range(10)]
         self.languages = [1,2,3,4,5]
         j=0
         q=0
@@ -30,9 +30,6 @@ class Rating:
         self.submit=Button(self.root,text="submit",command=self.sub)
         self.submit.place(x=0,y=400)
     def sub(self):
-        for i in range(self.number):
-            print(self.v[i].get())
-
-# root=Tk()
-# obj=Rating(root)
-# root.mainloop()
+        searchdatabase.updateRating(self.var[0],self.v[0].get(),self.v[1].get(),self.v[2].get(),self.v[3].get(),self.v[4].get(),self.v[5].get(),self.v[6].get(),self.v[7].get(),
+        self.v[8].get(),self.v[9].get())
+        self.root.destroy()

@@ -45,5 +45,3 @@ def update(id,firstname,lastname,username,password,privilege):
     conn.close()
 
 connect()
-#issue()
-#request()

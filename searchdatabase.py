@@ -22,6 +22,13 @@ def insert(questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,ye
     conn.commit()
     conn.close()
 
+def updateRating(id,q1='',q2='',q3='',q4='',q5='',q6='',q7='',q8='',q9='',q10=''):
+    conn=sqlite3.connect('searchdatabase.db')
+    cur = conn.cursor()
+    #cur.execute('INSERT INTO question VALUES(NULL,?,?,?,?,?,?,?,?,?)',(questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,year,semester,moed,format))
+    cur.execute("UPDATE numberOfParagraphs SET q1=?,q2=?,q3=?,q4=?,q5=?,q6=?,q7=?,q8=?,q9=?,q10=? WHERE id=?",(q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,id,))
+    conn.commit()
+    conn.close()
 def view():
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()
@@ -34,8 +41,6 @@ def search(questionSubject='',subQuestionSubject='',difLvl='',terms='',year='',s
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()
     cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? OR difLvl=? OR terms=? OR year=? OR semester=? OR moed=? OR format=?",(questionSubject,subQuestionSubject,difLvl,terms,year,semester,moed,format))
-    #test field searh by questionSubject subQuestionSubject
-    #cur.execute("SELECT * FROM question WHERE questionSubject=? OR subQuestionSubject=? ",(questionSubject,subQuestionSubject))
     rows=cur.fetchall()
     conn.close()
     return rows
@@ -55,5 +60,3 @@ def update(questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,ye
     conn.close()
 
 connect()
-#issue()
-#request()

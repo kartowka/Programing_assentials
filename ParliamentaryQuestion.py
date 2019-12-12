@@ -1,5 +1,6 @@
 from tkinter import *
-from dataClasses import *
+import dataClasses as dC
+from dataClasses import Question,Exam
 import searchdatabase
 from pdf2img import *
 
@@ -7,7 +8,8 @@ class Question:
     def __init__(self,root):
         #window
         self.root=root
-        #self.root=Tk()
+        self.root=Toplevel()
+        self.root.title("Parliamentary Question")
         #Data of questinary
         self.questionSubject=StringVar()
         self.subQuestionSubject=StringVar()
@@ -18,18 +20,14 @@ class Question:
         self.semester=StringVar()
         self.moed=StringVar()
         self.format=StringVar()
-        #A file
-        #self.newFile=open("test.txt","w+")
         #create widgets
         self.widgets()
-    #saving all questinary into a text to send to database
     def openPdf2img(self):
         self.uploadfile=filedialog.askopenfilename()
-        #print(self.uploadfile)
     def submitToText(self):
-        #newFile=open("1.txt","w")
         str=(self.questionSubject.get()+self.subQuestionSubject.get()+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get())
         UploadBox.image_input(str,self.uploadfile)
+        #add all to database.
         #searchdatabase.insert(self.questionSubject.get(),self.subQuestionSubject.get(),self.numberOfParagraphs.get(),self.difLvl.get(),self.terms.get(),self.year.get(),self.semester.get(),self.moed.get(),self.format.get())
 
     #drawing widgets
@@ -60,9 +58,3 @@ class Question:
         Entry(self.entryF,textvariable=self.format,bd=5,font=('',9)).grid(row=8,column=1)
         Button(self.entryF,text="Submit Form",bd=4,font=("",15),padx=5,pady=5,command=self.submitToText).grid()
         self.entryF.pack()
-
-#creating window application
-# root=Tk()
-# root.title("Parliamentary Question")
-# Question(root)
-# root.mainloop()

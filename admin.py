@@ -1,7 +1,9 @@
 from tkinter import *
 import backend
-#from ParliamentaryQuestion import Question
-from ParliamentaryQuestion import *
+from ParliamentaryQuestion import Question
+from img2doc import img2document
+from importCsv import ImportCSV
+from student import Student
 
 class Admin():
     def __init__(self,window):
@@ -11,10 +13,20 @@ class Admin():
         self.frame=Frame(self.window,width=800,height=450)
         self.frame.pack()
         file = Menu(menubar, tearoff = 0)
+        search = Menu(menubar, tearoff = 0)
+
         menubar.add_cascade(label ='File', menu = file)
+        menubar.add_cascade(label ='Search', menu = search)
+
         file.add_command(label="ParliamentaryQuestion", command= self.parliamentary_question)
-        #file.add_separator()
+        file.add_command(label="img2doc", command=self.img2document)
+        file.add_separator()
+        file.add_command(label="ImportCSV", command=self.import_csv)
+        file.add_separator()
         file.add_command(label ='Exit', command = window.destroy)
+
+        search.add_command(label="SearchBox", command=self.searchBox)
+        #search.add_separator()
 
 
         self.Label=Label(self.frame,text="Admin user",font=('Georgia',30,'bold')).place(x=150,y=20,width=400,height=50)
@@ -64,6 +76,14 @@ class Admin():
 
         self.button_issue = Button(self.frame, text='Clear Fields', command=self.clear_command)
         self.button_issue.place(x=100, y=360,width=100,height=40)
+
+    def searchBox(self):
+        self.frame.destroy()
+        obj =  Student(self.window)
+    def import_csv(self):
+        obj = ImportCSV(self.window)
+    def img2document(self):
+        obj = img2document(self.window)
     def parliamentary_question(self):
         obj = Question(self.window)
 
@@ -117,7 +137,3 @@ class Admin():
         self.entry_password.delete(0,END)
         self.entry_password.insert(END,value[3])
         backend.update(value[0],self.first_text.get(),self.last_text.get(),self.username_text.get(),self.password_text.get(),self.var.get())
-
-#window=Tk()
-#obj=Admin(window)
-#window.mainloop()

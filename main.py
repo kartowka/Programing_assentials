@@ -8,6 +8,7 @@ from student import Student
 class login:
      def __init__(self,window):
 
+
         self.window = window
         file = Menu(menubar, tearoff = 0)
         menubar.add_cascade(label ='File', menu = file)

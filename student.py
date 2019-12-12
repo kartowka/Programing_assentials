@@ -4,6 +4,7 @@ from tkinter.ttk import Combobox
 import backend
 import searchdatabase
 import os.path
+from rating import Rating
 
 class Student:
     def __init__(self,window):
@@ -60,6 +61,7 @@ class Student:
         self.search_result=Listbox(self.cnt_frame,font=("",14))
         self.search_result.place(height=300,width=1050,x=10,y=40)
         Button(self.cnt_frame, text="Download Selected",bd=4,font=("",14),padx=3,pady=3,command=self.downloadFile).place(x=160,y=0)
+        Button(self.cnt_frame, text="Rating",bd=4,font=("",14),padx=3,pady=3,command=self.rating).place(x=950,y=0)
         self.cnt_frame.pack(side=TOP)
 
 
@@ -81,6 +83,14 @@ class Student:
             ends='docx'
         str=str+'.'+ends
         return str
+
+    def rating(self):
+        selected_tuple=self.search_result.curselection()
+        if selected_tuple==():
+            return
+        value = self.search_result.get(selected_tuple)
+        obj=Rating(self.window,value[3])
+
 
     def downloadFile(self):
         selected_tuple=self.search_result.curselection()
@@ -113,8 +123,8 @@ class Student:
     #     self.listbox.delete(0,END)
     #     self.listbox.insert(END,(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get()))
 
-# window = Tk()
-# window.title('Student_User')
-# window.geometry('700x400')
-# obj = Student(window)
-# window.mainloop()
+window = Tk()
+window.title('Student_User')
+window.geometry('700x400')
+obj = Student(window)
+window.mainloop()

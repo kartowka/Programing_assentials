@@ -1,6 +1,7 @@
 from tkinter import *
 import backend
-from ParliamentaryQuestion import main
+#from ParliamentaryQuestion import Question
+from ParliamentaryQuestion import *
 
 class Admin():
     def __init__(self,window):
@@ -64,11 +65,7 @@ class Admin():
         self.button_issue = Button(self.frame, text='Clear Fields', command=self.clear_command)
         self.button_issue.place(x=100, y=360,width=100,height=40)
     def parliamentary_question(self):
-        window=Tk()
-        window.title('question')
-        window.geometry('1400x600')
-        obj = main(window)
-        window.mainloop()
+        obj = Question(self.window)
 
     def clear_command(self):
         self.entry_first.delete(0,END)

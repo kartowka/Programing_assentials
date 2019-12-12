@@ -12,8 +12,7 @@ class Rating:
         self.radiobuttons = [[0 for x in range(5)] for y in range(self.number)]
         self.buttons = []
         self.radiobutton=[]
-        global a=IntVar()
-        self.v=[a for x in range(self.number)]
+        self.v=[IntVar() for x in range(self.number)]
         self.languages = [1,2,3,4,5]
         j=0
         q=0

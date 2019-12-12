@@ -1,10 +1,14 @@
 from tkinter import *
-from dataClasses import Question
 
-class main:
+from dataClasses import *
+import searchdatabase
+from pdf2img import *
+
+class Question:
     def __init__(self,root):
         #window
         self.root=root
+        #self.root=Tk()
         #Data of questinary
         Question.questionSubject=StringVar()
         Question.subQuestionSubject=StringVar()
@@ -16,18 +20,27 @@ class main:
         Question.moed=StringVar()
         self.format=StringVar()
         #A file
-        self.newFile=open("test.txt","w+")
+        #self.newFile=open("test.txt","w+")
         #create widgets
         self.widgets()
     #saving all questinary into a text to send to database
+    def openPdf2img(self):
+        self.uploadfile=filedialog.askopenfilename()
+        #print(self.uploadfile)
     def submitToText(self):
-        self.newFile.write(((Question.questionSubject.get()+Question.subQuestionSubject.get())+Question.numberOfParagraphs.get()+Question.difLvl.get()+Question.terms.get()+Question.year.get()+Question.semester.get()+Question.moed.get()+self.format.get()))
-         
+
+        #newFile=open("1.txt","w")
+        str=(self.questionSubject.get()+self.subQuestionSubject.get()+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get())
+        UploadBox.image_input(str,self.uploadfile)
+        #searchdatabase.insert(self.questionSubject.get(),self.subQuestionSubject.get(),self.numberOfParagraphs.get(),self.difLvl.get(),self.terms.get(),self.year.get(),self.semester.get(),self.moed.get(),self.format.get())
 
     #drawing widgets
     def widgets(self):
-        self.head=Label(self.root,text="Parliamentary Question",font=('',35),pady=10)        
+        self.head=Label(self.root,text="Parliamentary Question",font=('',35),pady=10)
         self.head.pack()
+        self.uploadfile=Button(self.root,text="Browse",font=('',25),pady=10,command=self.openPdf2img)
+        self.uploadfile.pack()
+
         self.entryF=Frame(self.root,padx=10,pady=10)
         Label(self.entryF,text="Question subject",font=("",20),pady=3,padx=3).grid(sticky=W)
         Entry(self.entryF,textvariable=Question.questionSubject,bd=5,font=('',9)).grid(row=0,column=1)
@@ -51,8 +64,7 @@ class main:
         self.entryF.pack()
 
 #creating window application
-root=Tk()
-root.title("Parliamentary Question")
-main(root)
-root.mainloop()
-
+# root=Tk()
+# root.title("Parliamentary Question")
+# Question(root)
+# root.mainloop()

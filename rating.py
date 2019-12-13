@@ -30,6 +30,13 @@ class Rating():
         self.submit=Button(self.root,text="submit",command=self.sub)
         self.submit.place(x=0,y=400)
     def sub(self):
-        searchdatabase.updateRating(self.var[0],self.v[0].get(),self.v[1].get(),self.v[2].get(),self.v[3].get(),self.v[4].get(),self.v[5].get(),self.v[6].get(),self.v[7].get(),
-        self.v[8].get(),self.v[9].get())
+        numberOfRates=searchdatabase.getNumberOfRaters(self.var[0])
+        self.average(numberOfRates)
+        searchdatabase.updateRating(self.var[0],self.v[0],self.v[1],self.v[2],self.v[3],self.v[4],self.v[5],self.v[6],self.v[7],
+        self.v[8],self.v[9])
         self.root.destroy()
+
+    def average(self,numOfRates):
+        for i in range(10):
+            temp=self.v[i].get()
+            self.v[i]=((temp+numOfRates[0][i+1])/(numOfRates[0][11]+1))

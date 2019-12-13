@@ -1,11 +1,5 @@
 from tkinter import *
-<<<<<<< HEAD
-import dataClasses as dC
-from dataClasses import Question,Exam
-=======
-
 from dataClasses import *
->>>>>>> 61c2889e6186b0df18fbcd853cd3b41d8b8ba1cf
 import searchdatabase
 from pdf2img import *
 
@@ -30,11 +24,6 @@ class Question:
     def openPdf2img(self):
         self.uploadfile=filedialog.askopenfilename()
     def submitToText(self):
-<<<<<<< HEAD
-=======
-
-        #newFile=open("1.txt","w")
->>>>>>> 61c2889e6186b0df18fbcd853cd3b41d8b8ba1cf
         str=(self.questionSubject.get()+self.subQuestionSubject.get()+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get())
         UploadBox.image_input(str,self.uploadfile)
         #add all to database.

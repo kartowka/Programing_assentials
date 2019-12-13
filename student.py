@@ -102,25 +102,3 @@ class Student:
         #print(self.tup2str(value))
         print(os.path.exists(self.tup2str(value)))
         #save=filedialog.asksaveasfile(mode='w')
-
-        #searchdatabase.search(self.courseName,self.LecturerName)
-    # def clear_command(self):
-    #     self.entry_title.delete(0,END)
-    #     self.entry_year.delete(0,END)
-    #     self.entry_author.delete(0,END)
-    #     self.entry_isbn.delete(0,END)
-    #
-    # def view_command(self):
-    #     self.listbox.delete(0,END)
-    #     for row in backend.view():
-    #         self.listbox.insert(END,row)
-    #
-    # def search_command(self):
-    #     self.listbox.delete(0,END)
-    #     for row in backend.search(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get()):
-    #         self.listbox.insert(END,row)
-    #
-    # def add_command(self):
-    #     backend.insert(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get())
-    #     self.listbox.delete(0,END)
-    #     self.listbox.insert(END,(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get()))

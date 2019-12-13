@@ -6,13 +6,8 @@ class Course():
         self.courseNumber=courseNumber
 
 #exam date and moed
-<<<<<<< HEAD
-class Exam():
-    def __init__(self,year,semester,moed):  #,year=None,semester=None,moed=None
-=======
 class Exam(): 
-    def __init__(self,year=None,semester=None,moed=None):  
->>>>>>> 61c2889e6186b0df18fbcd853cd3b41d8b8ba1cf
+    def __init__(self,year=None,semester=None,moed=None):
         self.year=year
         self.semester=semester
         self.moed=moed

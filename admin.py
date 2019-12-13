@@ -78,8 +78,12 @@ class Admin():
         self.button_issue.place(x=100, y=360,width=100,height=40)
 
     def searchBox(self):
+        obj=None
         self.frame.destroy()
-        obj =  Student(self.window)
+        if obj==None:
+            obj =  Student(self.window)
+        else:
+            return
     def import_csv(self):
         obj = ImportCSV(self.window)
     def img2document(self):

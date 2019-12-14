@@ -14,6 +14,7 @@ def insertFromCSV(row):
     cur.execute('INSERT INTO numberOfParagraphs VALUES(NULL,0,0,0,0,0,0,0,0,0,0,0)')
     conn.commit()
     conn.close()
+
 def insert(questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,year,semester,moed,format):
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()
@@ -29,6 +30,7 @@ def updateRating(id,q1='',q2='',q3='',q4='',q5='',q6='',q7='',q8='',q9='',q10=''
     cur.execute("UPDATE numberOfParagraphs SET q1=?,q2=?,q3=?,q4=?,q5=?,q6=?,q7=?,q8=?,q9=?,q10=?,numberOfRaters = numberOfRaters + 1 WHERE id=?",(q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,id,))
     conn.commit()
     conn.close()
+
 def view():
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()
@@ -44,6 +46,7 @@ def search(questionSubject='',subQuestionSubject='',difLvl='',terms='',year='',s
     rows=cur.fetchall()
     conn.close()
     return rows
+
 def getNumberOfRaters(id):
     conn=sqlite3.connect('searchdatabase.db')
     cur = conn.cursor()

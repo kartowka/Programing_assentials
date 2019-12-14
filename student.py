@@ -3,13 +3,13 @@ from tkinter import ttk, messagebox, filedialog
 from tkinter.ttk import Combobox
 import backend
 import searchdatabase
-import os.path
+import os
 from rating import Rating
+import subprocess
+import webbrowser
 
 class Student:
     def __init__(self,window):
-        #id,questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,year,semester,moed,format
-
         self.window = window
         #self.window = Toplevel()
         self.window.geometry('1400x600')
@@ -99,6 +99,9 @@ class Student:
         if selected_tuple==():
             return
         value = self.search_result.get(selected_tuple)
-        #print(self.tup2str(value))
-        print(os.path.exists(self.tup2str(value)))
-        #save=filedialog.asksaveasfile(mode='w')
+        file='savedocs/'+self.tup2str(value)
+        if(os.path.exists(file)):
+            webbrowser.open(file)
+        else:
+            messagebox.showinfo('Messege','file not found.')
+            return

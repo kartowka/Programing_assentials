@@ -27,7 +27,7 @@ class Question:
         str=(self.questionSubject.get()+self.subQuestionSubject.get()+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get())
         UploadBox.image_input(str,self.uploadfile)
         #add all to database.
-        #searchdatabase.insert(self.questionSubject.get(),self.subQuestionSubject.get(),self.numberOfParagraphs.get(),self.difLvl.get(),self.terms.get(),self.year.get(),self.semester.get(),self.moed.get(),self.format.get())
+        searchdatabase.insert(self.questionSubject.get(),self.subQuestionSubject.get(),self.numberOfParagraphs.get(),self.difLvl.get(),self.terms.get(),self.year.get(),self.semester.get(),self.moed.get(),self.format.get())
 
     #drawing widgets
     def widgets(self):

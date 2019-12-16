@@ -101,9 +101,10 @@ class Student:
         value = self.search_result.get(selected_tuple)
         file='savedocs/'+self.tup2str(value)
         #path_to_krop = '/snap/bin/krop.krop-app'
-
         if(os.path.exists(file)):
-            webbrowser.open(file)
+            #webbrowser.open(file)
+            webbrowser.get(using='google-chrome').open(file)
+
             #subprocess.call([path_to_krop, file])
         else:
             messagebox.showinfo('Messege','file not found.')

@@ -21,7 +21,7 @@ class UploadBox:
         self.label1.place(x=120, y=0)
         self.uploadBtn=Button(root,text='Browse',command=self.filePath)
         self.uploadBtn.place(x=800,y=30)
-        self.closeButton=Button(root,text="EXIT",command=self.close)
+        self.closeButton=Button(root,text="Close",command=self.close)
         self.closeButton.place(x=160,y=80)
         self.okButton=Button(root,text="Ok",command=self.CropFile)
         self.okButton.place(x=120,y=80)

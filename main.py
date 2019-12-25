@@ -8,6 +8,7 @@ from student import Student
 class login:
      def __init__(self,window):
 
+
         self.window = window
         file = Menu(menubar, tearoff = 0)
         menubar.add_cascade(label ='File', menu = file)
@@ -73,15 +74,18 @@ class login:
             elif result[5]==3:
                 self.frame.destroy()
                 obj=Student(window)
+        else:
+            messagebox.showinfo("ERROR","Username or Password incorrect.")
 
 
 # creating the window
-window = Tk()
-menubar=Menu(window)
-window.title('SCE - Search Engine')
-window.geometry('1400x600')
-window.config(menu=menubar)
-# creating object to login class
-obj = login(window)
-#obj.loginfn()
-window.mainloop()
+if __name__=="__main__":
+    window = Tk()
+    menubar=Menu(window)
+    window.title('SCE - Search Engine')
+    window.geometry('1400x600')
+    window.config(menu=menubar)
+    # creating object to login class
+    obj = login(window)
+    #obj.loginfn()
+    window.mainloop()

@@ -8,20 +8,26 @@ import docx
 
 #FUNCTION TO CROP PDF TO DIFRENT PAGES
 
-class UploadBox:
+class img2document:
     def __init__(self,root):
-        self.fileName=StringVar()
-        self.label1=Label(root,text="please insert file with .png")
-        self.fileNameInput=Entry(root)
-        self.fileNameInput.insert(0,'please insert filename')
-        self.fileNameInput.bind("<Button-1>",lambda event: self.clear_entry(event, self.fileNameInput))
-        self.fileNameInput.place(x=120,y=30)
-        self.label1.place(x=100, y=0)
-        self.uploadTitle=Label(root,text="Upload png FILE")
-        self.uploadBtn=Button(root,text='OPEN',command=self.image_input)
-        self.uploadBtn.place(x=160,y=60)
-        self.closeButton=Button(root,text="EXIT",command=self.close)
-        self.closeButton.place(x=220,y=60)
+        self.root=root
+        self.root=Toplevel()
+        self.root.title("Img 2 Document")
+        self.root.geometry('700x500')
+        self.fileNameInput=StringVar()
+        self.widgets()
+    def widgets(self):
+        self.head=Label(self.root,text="Image 2 Document",font=('',35),pady=10)
+        self.head.pack()
+
+        self.entryF=Frame(self.root,padx=10,pady=10)
+        Label(self.entryF,text="Enter filename",font=("",20),pady=3,padx=3).grid(sticky=W)
+        Entry(self.entryF,textvariable=self.fileNameInput,bd=5,font=('',9)).grid(row=0,column=1)
+        Button(self.entryF,text="Browse",bd=4,font=("",15),padx=5,pady=5,command=self.image_input).grid(row=1,column=0)
+        Button(self.entryF,text="Exit",bd=4,font=("",15),padx=5,pady=5,command=self.close).grid(row=1,column=1)
+        self.entryF.pack()
+
+
     def clear_entry(self,event, entry):
         entry.delete(0, END)
     def image_input(self):
@@ -33,16 +39,14 @@ class UploadBox:
         while(answer==True):
             fileName = filedialog.askopenfilename()
             answer=messagebox.askyesno("Question","Do you want to add more files?")
-            document.add_picture(fileName, width=Inches(2.0))
+            if(fileName==()):
+                return
+            document.add_picture(fileName, width=Inches(6.0),height=Inches(1.85))
             messagebox.showinfo("Messege","file upload complete!")
-        print(answer)
         if(answer==False):
-            document.save("%s%s" %(self.fileNameInput.get(),doc))
-        return document
+            document.save('savedocs/'+"%s%s" %(self.fileNameInput.get(),doc))
+            messagebox.showinfo("Messege","document file created!")
+
+        self.close()
     def close(self):
-        return window.destroy()
-window=Tk()
-mywin=UploadBox(window)
-window.title('SCE - IMG2WORD')
-window.geometry("400x200+10+10")
-window.mainloop()
+        return self.root.destroy()

@@ -1,18 +1,20 @@
 from tkinter import *
-from tkinter import Radiobutton
+from tkinter import Radiobutton,IntVar
 import searchdatabase
 
-class Rating:
+class Rating():
     def __init__(self, root,val):
         self.root = root
-        self.root=Tk()
+        self.root=Toplevel()
         self.root.title("Question Rating")
         self.root.geometry('700x500')
-        self.number = int(val)
+        self.var=val
+        self.number = int(val[3])
         self.radiobuttons = [[0 for x in range(5)] for y in range(self.number)]
         self.buttons = []
         self.radiobutton=[]
-        self.v=[IntVar() for x in range(self.number)]
+        self.v=[IntVar() for x in range(10)]
+
         self.languages = [1,2,3,4,5]
         j=0
         q=0
@@ -29,9 +31,13 @@ class Rating:
         self.submit=Button(self.root,text="submit",command=self.sub)
         self.submit.place(x=0,y=400)
     def sub(self):
-        for i in range(self.number):
-            print(self.v[i].get())
+        numberOfRates=searchdatabase.getNumberOfRaters(self.var[0])
+        self.average(numberOfRates)
+        searchdatabase.updateRating(self.var[0],self.v[0],self.v[1],self.v[2],self.v[3],self.v[4],self.v[5],self.v[6],self.v[7],
+        self.v[8],self.v[9])
+        self.root.destroy()
 
-# root=Tk()
-# obj=Rating(root)
-# root.mainloop()
+    def average(self,numOfRates):
+        for i in range(10):
+            temp=self.v[i].get()
+            self.v[i]=((temp+numOfRates[0][i+1])/(numOfRates[0][11]+1))

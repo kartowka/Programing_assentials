@@ -3,14 +3,15 @@ from tkinter import ttk, messagebox, filedialog
 from tkinter.ttk import Combobox
 import backend
 import searchdatabase
-import os.path
+import os
 from rating import Rating
+import subprocess
+import webbrowser
 
 class Student:
     def __init__(self,window):
-        #id,questionSubject,subQuestionSubject,numberOfParagraphs,difLvl,terms,year,semester,moed,format
-
         self.window = window
+        #self.window = Toplevel()
         self.window.geometry('1400x600')
         self.window.grid_rowconfigure(1, weight=1)
         self.window.grid_columnconfigure(0, weight=1)
@@ -89,7 +90,8 @@ class Student:
         if selected_tuple==():
             return
         value = self.search_result.get(selected_tuple)
-        obj=Rating(self.window,value[3])
+        #self.window.destroy()
+        obj=Rating(self.window,value)
 
 
     def downloadFile(self):
@@ -97,34 +99,13 @@ class Student:
         if selected_tuple==():
             return
         value = self.search_result.get(selected_tuple)
-        #print(self.tup2str(value))
-        print(os.path.exists(self.tup2str(value)))
-        #save=filedialog.asksaveasfile(mode='w')
+        file='savedocs/'+self.tup2str(value)
+        #path_to_krop = '/snap/bin/krop.krop-app'
+        if(os.path.exists(file)):
+            #webbrowser.open(file)
+            webbrowser.get(using='google-chrome').open(file)
 
-        #searchdatabase.search(self.courseName,self.LecturerName)
-    # def clear_command(self):
-    #     self.entry_title.delete(0,END)
-    #     self.entry_year.delete(0,END)
-    #     self.entry_author.delete(0,END)
-    #     self.entry_isbn.delete(0,END)
-    #
-    # def view_command(self):
-    #     self.listbox.delete(0,END)
-    #     for row in backend.view():
-    #         self.listbox.insert(END,row)
-    #
-    # def search_command(self):
-    #     self.listbox.delete(0,END)
-    #     for row in backend.search(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get()):
-    #         self.listbox.insert(END,row)
-    #
-    # def add_command(self):
-    #     backend.insert(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get())
-    #     self.listbox.delete(0,END)
-    #     self.listbox.insert(END,(self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get()))
-
-window = Tk()
-window.title('Student_User')
-window.geometry('700x400')
-obj = Student(window)
-window.mainloop()
+            #subprocess.call([path_to_krop, file])
+        else:
+            messagebox.showinfo('Messege','file not found.')
+            return

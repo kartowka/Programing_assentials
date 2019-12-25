@@ -1,4 +1,5 @@
-#course info   
+from tkinter import *
+#course info
 class Course():
     def __init__(self,courseName,courseNumber):
         self.courseName=courseName
@@ -6,7 +7,7 @@ class Course():
 
 #exam date and moed
 class Exam(): 
-    def __init__(self,year=None,semester=None,moed=None):  
+    def __init__(self,year=None,semester=None,moed=None):
         self.year=year
         self.semester=semester
         self.moed=moed
@@ -42,8 +43,8 @@ class Lecturer(User,Course):
     def __init__(yearOfExprience):
         User.__init__(User,firstName=None,lastName=None , userName=None, password=None ,year=None)
         Course.__init__(Course,courseName=None,courseNumber=None)
-        Lecturer.yearOfExprience=yearOfExprience          
-        
+        Lecturer.yearOfExprience=yearOfExprience
+
 #Rakaz info
 class Coordinator(Lecturer,User):
     def __init__(self,department):

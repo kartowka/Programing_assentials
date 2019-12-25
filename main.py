@@ -79,12 +79,13 @@ class login:
 
 
 # creating the window
-window = Tk()
-menubar=Menu(window)
-window.title('SCE - Search Engine')
-window.geometry('1400x600')
-window.config(menu=menubar)
-# creating object to login class
-obj = login(window)
-#obj.loginfn()
-window.mainloop()
+if __name__=="__main__":
+    window = Tk()
+    menubar=Menu(window)
+    window.title('SCE - Search Engine')
+    window.geometry('1400x600')
+    window.config(menu=menubar)
+    # creating object to login class
+    obj = login(window)
+    #obj.loginfn()
+    window.mainloop()

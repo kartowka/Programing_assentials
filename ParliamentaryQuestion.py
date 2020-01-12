@@ -15,7 +15,7 @@ class main:
         Question.semester=StringVar()
         Question.moed=StringVar()
         self.format=StringVar()
-        #A file
+        #Creating a file
         self.newFile=open("test.txt","w+")
         #create widgets
         self.widgets()

@@ -7,6 +7,12 @@ import os
 from rating import Rating
 import subprocess
 import webbrowser
+import logging
+
+logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG) 
+logger.info("student.py run as expected.")
 
 class Student:
     def __init__(self,window):
@@ -91,6 +97,7 @@ class Student:
             return
         value = self.search_result.get(selected_tuple)
         #self.window.destroy()
+        logger.info("user rated question.")
         obj=Rating(self.window,value)
 
 
@@ -103,9 +110,13 @@ class Student:
         #path_to_krop = '/snap/bin/krop.krop-app'
         if(os.path.exists(file)):
             #webbrowser.open(file)
-            webbrowser.get(using='google-chrome').open(file)
+           # if(webbrowser.get(using='google-chrome').open(file)):
+
+            if not webbrowser.get(using='google-chrome').open(file):
+                logger.warning("error finding opened browser.")
 
             #subprocess.call([path_to_krop, file])
         else:
             messagebox.showinfo('Messege','file not found.')
+            logger.error("file not found/not exist.")
             return

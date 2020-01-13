@@ -3,6 +3,12 @@ import csv
 import searchdatabase
 from tkinter import filedialog
 from tkinter import messagebox
+import logging
+
+logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG) 
+logger.info("importCsv.py run as expected.")
 
 
 class ImportCSV:
@@ -38,6 +44,7 @@ class ImportCSV:
             searchdatabase.insertFromCSV(row)
         #importCsv_backend.insert(to_db)
         messagebox.showinfo("Messege","file upload complete!")
+        logger.info("admin uploaded new csv file.")
         self.close()
     def close(self):
         return self.root.destroy()

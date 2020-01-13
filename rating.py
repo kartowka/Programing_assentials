@@ -1,6 +1,13 @@
 from tkinter import *
 from tkinter import Radiobutton,IntVar
 import searchdatabase
+import logging
+
+logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG) 
+logger.info("Rating.py run as expected.")
+
 
 class Rating():
     def __init__(self, root,val):

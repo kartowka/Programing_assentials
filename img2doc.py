@@ -38,6 +38,7 @@ class img2document:
     def clear_entry(self,event, entry):
         entry.delete(0, END)
     def image_input(self):
+        """function of img2pdf - convert the img to pdf format"""
         #docs file create
         answer=True
         document = docx.Document()

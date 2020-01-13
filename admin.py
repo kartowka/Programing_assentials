@@ -11,6 +11,7 @@ logger=logging.getLogger()
 logger.setLevel(logging.DEBUG) 
 logger.info("Admin.py run as expected.")
 class Admin():
+    """ class Admin operate all the entry to the program """
     def __init__(self,window):
         self.window=window
         menubar=Menu(window)
@@ -83,6 +84,7 @@ class Admin():
         self.button_issue.place(x=100, y=360,width=100,height=40)
 
     def searchBox(self):
+        """ open the search box in the frame """
         obj=None
         self.frame.destroy()
         if obj==None:
@@ -92,22 +94,27 @@ class Admin():
             logger.error("couldn`t open searchBox")
             return
     def import_csv(self):
+        """import CsV """
         logger.info("Admin user opened importCSV")
         obj = ImportCSV(self.window)
     def img2document(self):
+        """function that open the frame img2doc for be execute"""
         logger.info("Admin user opened img2document")
         obj = img2document(self.window)
     def parliamentary_question(self):
+        """function open all the parlimentary question on the file"""
         logger.info("Admin user opened parliamentary_question")
         obj = Question(self.window)
 
     def clear_command(self):
+        """function that clear the command"""
         self.entry_first.delete(0,END)
         self.entry_last.delete(0,END)
         self.entry_username.delete(0,END)
         self.entry_password.delete(0,END)
 
     def view_command(self):
+        
         self.listbox.delete(0,END)
         for row in backend.view():
             self.listbox.insert(END,row) # END ensures that every new entry is stored at end of the all rows

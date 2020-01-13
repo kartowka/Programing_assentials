@@ -4,6 +4,7 @@ from tkinter import messagebox, ttk
 import main_backend
 from admin import Admin
 from student import Student
+import logging
 #creating login page along with the register page.
 class login:
      def __init__(self,window):
@@ -59,8 +60,11 @@ class login:
         result=None
         if len(self.namee.get()) ==0:
             messagebox.showinfo("ERROR", "Mendatory Field is empty")
+            logger.error("Mendatory Field is empty")
         elif  len(self.password1e.get()) == 0:
             messagebox.showinfo("ERROR", "Mendatory Field is empty")
+            logger.error("Mendatory Field is empty")
+
         else:
             result=main_backend.check(self.namee_text.get(),self.password1e_text.get())
         if result!=None:
@@ -70,16 +74,24 @@ class login:
             #result[5] - sqlite3 create tuple - result[5]-> return check privilege
             if result[5]==1:
                 self.frame.destroy()
-                obj=Admin(window)
+                logger.info("Admin,user loged.")
+                Admin(window)
             elif result[5]==3:
                 self.frame.destroy()
-                obj=Student(window)
+                logger.info("Student,user logedin.")
+                Student(window)
         else:
             messagebox.showinfo("ERROR","Username or Password incorrect.")
+            logger.error("Username or Password incorrect.")
+
 
 
 # creating the window
 if __name__=="__main__":
+    logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger=logging.getLogger() 
+    logger.setLevel(logging.DEBUG) 
+    logger.info("main.py run as expected.")
     window = Tk()
     menubar=Menu(window)
     window.title('SCE - Search Engine')

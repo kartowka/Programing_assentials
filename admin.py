@@ -4,7 +4,12 @@ from ParliamentaryQuestion import Question
 from img2doc import img2document
 from importCsv import ImportCSV
 from student import Student
+import logging
 
+logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG) 
+logger.info("Admin.py run as expected.")
 class Admin():
     def __init__(self,window):
         self.window=window
@@ -81,14 +86,19 @@ class Admin():
         obj=None
         self.frame.destroy()
         if obj==None:
+            logger.info("Admin user opened searchBox")
             obj =  Student(self.window)
         else:
+            logger.error("couldn`t open searchBox")
             return
     def import_csv(self):
+        logger.info("Admin user opened importCSV")
         obj = ImportCSV(self.window)
     def img2document(self):
+        logger.info("Admin user opened img2document")
         obj = img2document(self.window)
     def parliamentary_question(self):
+        logger.info("Admin user opened parliamentary_question")
         obj = Question(self.window)
 
     def clear_command(self):
@@ -110,12 +120,14 @@ class Admin():
 
 
     def add_command(self):
+        logger.info("admin user added users.")
         backend.insert(self.first_text.get(),self.last_text.get(),self.username_text.get(),self.password_text.get(),self.var.get())
         self.listbox.delete(0,END)
         self.listbox.insert(END,(self.first_text.get(),self.last_text.get(),self.username_text.get(),self.password_text.get(),self.var.get()))
 
 
     def delete_command(self):
+        logger.info("admin user removed users.")
         selected_tuple=self.listbox.curselection()
         value = self.listbox.get(selected_tuple)
         backend.delete(value[0])    # i have to use value[0] here or at backend use id[0]

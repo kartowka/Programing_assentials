@@ -1,0 +1,13 @@
+2020-01-13 11:40:58,425 - root - INFO - ParliamentaryQuestion.py run as expected.
+2020-01-13 11:40:58,476 - root - INFO - img2doc.py run as expected.
+2020-01-13 11:40:58,478 - root - INFO - importCsv.py run as expected.
+2020-01-13 11:40:58,482 - root - INFO - Rating.py run as expected.
+2020-01-13 11:40:58,483 - root - INFO - student.py run as expected.
+2020-01-13 11:40:58,483 - root - INFO - Admin.py run as expected.
+2020-01-13 11:40:58,484 - root - INFO - main.py run as expected.
+2020-01-13 11:41:08,142 - root - INFO - Admin,user loged.
+2020-01-13 11:41:21,613 - root - INFO - Admin user opened parliamentary_question
+2020-01-13 11:41:27,489 - root - INFO - Admin user opened importCSV
+2020-01-13 11:41:30,699 - root - INFO - Admin user opened searchBox
+2020-01-13 11:41:34,567 - root - INFO - Admin user opened searchBox
+2020-01-13 11:41:48,317 - root - ERROR - file not found/not exist.

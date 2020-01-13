@@ -2,6 +2,13 @@ from tkinter import *
 from dataClasses import *
 import searchdatabase
 from pdf2img import *
+import logging
+
+logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG) 
+logger.info("ParliamentaryQuestion.py run as expected.")
+
 
 class Question:
     def __init__(self,root):

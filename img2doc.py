@@ -5,6 +5,13 @@ from tkinter import *
 from docx.shared import Inches
 from docx import Document
 import docx
+import logging
+
+logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG) 
+logger.info("img2doc.py run as expected.")
+
 
 #FUNCTION TO CROP PDF TO DIFRENT PAGES
 
@@ -43,9 +50,11 @@ class img2document:
                 return
             document.add_picture(fileName, width=Inches(6.0),height=Inches(1.85))
             messagebox.showinfo("Messege","file upload complete!")
+            logger.info("file upload complete.")
         if(answer==False):
             document.save('savedocs/'+"%s%s" %(self.fileNameInput.get(),doc))
             messagebox.showinfo("Messege","document file created!")
+            logger.info("file created.")
 
         self.close()
     def close(self):

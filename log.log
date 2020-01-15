@@ -18,3 +18,20 @@
 2020-01-13 12:51:31,378 - root - INFO - student.py run as expected.
 2020-01-13 12:51:31,378 - root - INFO - Admin.py run as expected.
 2020-01-13 12:51:31,378 - root - INFO - main.py run as expected.
+2020-01-15 12:33:16,983 - root - INFO - importCsv.py run as expected.
+2020-01-15 12:33:20,843 - root - INFO - img2doc.py run as expected.
+2020-01-15 12:33:54,150 - root - INFO - ParliamentaryQuestion.py run as expected.
+2020-01-15 12:33:54,224 - root - INFO - img2doc.py run as expected.
+2020-01-15 12:33:54,226 - root - INFO - importCsv.py run as expected.
+2020-01-15 12:33:54,230 - root - INFO - Rating.py run as expected.
+2020-01-15 12:33:54,233 - root - INFO - student.py run as expected.
+2020-01-15 12:33:54,233 - root - INFO - Admin.py run as expected.
+2020-01-15 12:33:54,233 - root - INFO - main.py run as expected.
+2020-01-15 12:34:00,619 - root - INFO - Student,user logedin.
+2020-01-15 12:34:42,722 - root - INFO - ParliamentaryQuestion.py run as expected.
+2020-01-15 12:34:42,794 - root - INFO - img2doc.py run as expected.
+2020-01-15 12:34:42,796 - root - INFO - importCsv.py run as expected.
+2020-01-15 12:34:42,797 - root - INFO - Rating.py run as expected.
+2020-01-15 12:34:42,799 - root - INFO - student.py run as expected.
+2020-01-15 12:34:42,799 - root - INFO - Admin.py run as expected.
+2020-01-15 12:34:42,799 - root - INFO - main.py run as expected.

@@ -7,7 +7,10 @@ from student import Student
 import logging
 #creating login page along with the register page.
 class login:
-    """class Login for entry"""
+     """class Login for entry"""
+
+
+
      def __init__(self,window):
 
 
@@ -59,32 +62,35 @@ class login:
 
      def login_admin(self):
          """function that login the admin to the system"""
-        result=None
-        if len(self.namee.get()) ==0:
-            messagebox.showinfo("ERROR", "Mendatory Field is empty")
-            logger.error("Mendatory Field is empty")
-        elif  len(self.password1e.get()) == 0:
-            messagebox.showinfo("ERROR", "Mendatory Field is empty")
-            logger.error("Mendatory Field is empty")
 
-        else:
-            result=main_backend.check(self.namee_text.get(),self.password1e_text.get())
-        if result!=None:
-            # 1 - means Admin privilege
-            # 2 - means Lecturer privilege
-            # 3 - means Student
-            #result[5] - sqlite3 create tuple - result[5]-> return check privilege
-            if result[5]==1:
-                self.frame.destroy()
-                logger.info("Admin,user loged.")
-                Admin(window)
-            elif result[5]==3:
-                self.frame.destroy()
-                logger.info("Student,user logedin.")
-                Student(window)
-        else:
-            messagebox.showinfo("ERROR","Username or Password incorrect.")
-            logger.error("Username or Password incorrect.")
+
+
+         result=None
+         if len(self.namee.get()) ==0:
+             messagebox.showinfo("ERROR", "Mendatory Field is empty")
+             logger.error("Mendatory Field is empty")
+         elif  len(self.password1e.get()) == 0:
+             messagebox.showinfo("ERROR", "Mendatory Field is empty")
+             logger.error("Mendatory Field is empty")
+ 
+         else:
+             result=main_backend.check(self.namee_text.get(),self.password1e_text.get())
+         if result!=None:
+             # 1 - means Admin privilege
+             # 2 - means Lecturer privilege
+             # 3 - means Student
+             #result[5] - sqlite3 create tuple - result[5]-> return check privilege
+             if result[5]==1:
+                 self.frame.destroy()
+                 logger.info("Admin,user loged.")
+                 Admin(window)
+             elif result[5]==3:
+                 self.frame.destroy()
+                 logger.info("Student,user logedin.")
+                 Student(window)
+         else:
+             messagebox.showinfo("ERROR","Username or Password incorrect.")
+             logger.error("Username or Password incorrect.")
 
 
 

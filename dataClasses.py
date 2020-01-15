@@ -15,6 +15,9 @@ class Exam():
 #question info
 class Question(Exam):
     """class Question that inhrite from base class -Exam"""
+
+
+
     def __init__(self,noQuestion=None,questionSubject=None,subQuestionSubject=None,numberOfParagraphs=None,difLvl=None,terms=None):
         Exam.__init__(Exam,year=None,semester=None,moed=None)
         self.noQuestion=noQuestion
@@ -35,14 +38,20 @@ class User():
 
 #student info
 class Student(User):
-     """class Question that inhrite from base class -User"""
+    """class Question that inhrite from base class -User"""
+
+
+
     def __init__(self, year=0):
         User.__init__(User, firstName=None, lastName=None, userName=None, password=None,phoneNumber=None)
         self.year=year
 
 #Lecturer info
 class Lecturer(User,Course):
-     """class Question that inhrite from base class -User,Course"""
+    """class Question that inhrite from base class -User,Course"""
+
+
+
     def __init__(yearOfExprience):
         User.__init__(User,firstName=None,lastName=None , userName=None, password=None ,year=None)
         Course.__init__(Course,courseName=None,courseNumber=None)
@@ -50,7 +59,10 @@ class Lecturer(User,Course):
 
 #Rakaz info
 class Coordinator(Lecturer,User):
-     """class Question that inhrite from base class -Lecturer,User"""
+    """class Question that inhrite from base class -Lecturer,User"""
+
+
+
     def __init__(self,department):
         Lecturer.__init__(self)
         self.department=department

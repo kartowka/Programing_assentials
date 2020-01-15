@@ -1,10 +1,21 @@
 from tkinter import *
-from dataClasses import Question
+from dataClasses import *
+import searchdatabase
+from pdf2img import *
+import logging
 
-class main:
+logging.basicConfig(filename="log.log",filemode='a+',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG) 
+logger.info("ParliamentaryQuestion.py run as expected.")
+
+
+class Question:
     def __init__(self,root):
         #window
         self.root=root
+        self.root=Toplevel()
+        self.root.title("Parliamentary Question")
         #Data of questinary
         Question.questionSubject=StringVar()
         Question.subQuestionSubject=StringVar()
@@ -19,15 +30,21 @@ class main:
         self.newFile=open("test.txt","w+")
         #create widgets
         self.widgets()
-    #saving all questinary into a text to send to database
+    def openPdf2img(self):
+        self.uploadfile=filedialog.askopenfilename()
     def submitToText(self):
-        self.newFile.write(((Question.questionSubject.get()+Question.subQuestionSubject.get())+Question.numberOfParagraphs.get()+Question.difLvl.get()+Question.terms.get()+Question.year.get()+Question.semester.get()+Question.moed.get()+self.format.get()))
-         
+        str=(self.questionSubject.get()+self.subQuestionSubject.get()+self.numberOfParagraphs.get()+self.difLvl.get()+self.terms.get()+self.year.get()+self.semester.get()+self.moed.get()+self.format.get())
+        UploadBox.image_input(str,self.uploadfile)
+        #add all to database.
+        searchdatabase.insert(self.questionSubject.get(),self.subQuestionSubject.get(),self.numberOfParagraphs.get(),self.difLvl.get(),self.terms.get(),self.year.get(),self.semester.get(),self.moed.get(),self.format.get())
 
     #drawing widgets
     def widgets(self):
-        self.head=Label(self.root,text="Parliamentary Question",font=('',35),pady=10)        
+        self.head=Label(self.root,text="Parliamentary Question",font=('',35),pady=10)
         self.head.pack()
+        self.uploadfile=Button(self.root,text="Browse",font=('',25),pady=10,command=self.openPdf2img)
+        self.uploadfile.pack()
+
         self.entryF=Frame(self.root,padx=10,pady=10)
         Label(self.entryF,text="Question subject",font=("",20),pady=3,padx=3).grid(sticky=W)
         Entry(self.entryF,textvariable=Question.questionSubject,bd=5,font=('',9)).grid(row=0,column=1)
@@ -49,10 +66,3 @@ class main:
         Entry(self.entryF,textvariable=self.format,bd=5,font=('',9)).grid(row=8,column=1)
         Button(self.entryF,text="Submit Form",bd=4,font=("",15),padx=5,pady=5,command=self.submitToText).grid()
         self.entryF.pack()
-
-#creating window application
-root=Tk()
-root.title("Parliamentary Question")
-main(root)
-root.mainloop()
-

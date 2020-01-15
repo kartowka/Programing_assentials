@@ -7,6 +7,7 @@ from student import Student
 import logging
 #creating login page along with the register page.
 class login:
+    """class Login for entry"""
      def __init__(self,window):
 
 
@@ -57,6 +58,7 @@ class login:
         self.frame.pack()
 
      def login_admin(self):
+         """function that login the admin to the system"""
         result=None
         if len(self.namee.get()) ==0:
             messagebox.showinfo("ERROR", "Mendatory Field is empty")
